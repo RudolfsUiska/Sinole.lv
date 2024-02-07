@@ -56,57 +56,7 @@
                     </figure>
                     <h2 class="main-h2">Rezultāti</h2>
                 </div>
-                <div id="sheet"></div>
-
-                <script>
-                    // Load the Google Sheets API client library
-                    gapi.load('client', start);
-            
-                    function start() {
-                        // Initialize the Google Sheets API client with your API key or OAuth credentials
-                        gapi.client.init({
-                            apiKey: 'AIzaSyA6xQQb1YkV8FuO1w7PO0hL2jDp05ugarc',
-                            // discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'], // Uncomment this line if using discoveryDocs
-                        }).then(function() {
-                            // Call your function to load and display the Google Sheet
-                            loadSheet();
-                        });
-                    }
-            
-                    function loadSheet() {
-                        // Define the spreadsheet ID and range
-                        var spreadsheetId = '1wHHVohfIIIXUXxN5tySo8q_LkwwBgwj0WBeVusGGfSk';
-                        var range = 'RWD!A1:G38'; // Change the range as needed
-            
-                        // Make an API request to fetch the data
-                        gapi.client.sheets.spreadsheets.values.get({
-                            spreadsheetId: spreadsheetId,
-                            range: range
-                        }).then(function(response) {
-                            var values = response.result.values;
-                            var sheetDiv = document.getElementById('sheet');
-            
-                            // Create HTML table to display the data
-                            var table = '<table>';
-                            if (values) {
-                                values.forEach(function(row) {
-                                    table += '<tr>';
-                                    row.forEach(function(cell) {
-                                        table += '<td>' + cell + '</td>';
-                                    });
-                                    table += '</tr>';
-                                });
-                            }
-                            table += '</table>';
-            
-                            // Display the table on the webpage
-                            sheetDiv.innerHTML = table;
-                        });
-                    }
-                </script>
-            
-                <!-- Load the Google API client library -->
-                <script src="https://apis.google.com/js/api.js"></script>
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSo58GUociksbz0OnRw42sxi1Nx1roB7NLhm22SzlING8xXvnteFawTwv5LCbdnzhpObKufSpNhWKQf/pubhtml?gid=888156509&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
             
             </div>
         </div>
