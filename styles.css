@@ -88,7 +88,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
    figure {
      margin-bottom: 10px;
    }
-   
+   w
    figcaption {
      margin-top: 5px;
      text-align: center;
@@ -728,6 +728,22 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
      justify-content: flex-end;
    }
    
+   .wide-background2 {
+    width: 100vw;
+    height: 150vh; /* Adjust the height as needed for desktop */
+    margin-bottom: 10%;
+    background-color: #657580;
+    background-size: cover; /* Ensure the background image covers the entire container by default */
+    background-position: center; /* Center the background image */
+}
+
+@media (max-width: 768px) {
+    .wide-background2 {
+        height: 50vh; /* Adjust the height for mobile */
+    }
+}
+
+
    .wide-background {
      width: 100vw;
      height: 100vh;
