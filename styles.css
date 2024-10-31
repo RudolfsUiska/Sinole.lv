@@ -1986,4 +1986,45 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
      .link-3 {
        font-size: 30px;
      }
+     .slideshow-container {
+      max-width: 600px;
+      position: relative;
+      text-align: center;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for focus */
+      border-radius: 8px; /* Optional rounded edges */
+  }
+  
+  .slideshow-container img {
+      width: 100%;
+      display: none;
+      border-radius: 8px; /* Match slideshow container */
+  }
+  
+  .slideshow-container img.active {
+      display: block;
+  }
+  
+  button.prev, button.next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%; /* Center vertically */
+      width: auto;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      user-select: none;
+      transform: translateY(-50%);
+      border-radius: 50%; /* Optional circular shape */
+  }
+  
+  button.prev { left: 10px; } /* Position left button */
+  button.next { right: 10px; } /* Position right button */
+  
+  button.prev:hover, button.next:hover {
+      background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+  }
    }

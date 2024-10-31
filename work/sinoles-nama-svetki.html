@@ -76,6 +76,16 @@
                     </figure>
                     <h1>Sinoles nama vēsture</h1>
                     <a href="https://raw.githubusercontent.com/RudolfsUiska/Sinole.lv/refs/heads/main/assets/Sinole_v%C4%93stures_liec%C4%ABbas_2024.pdf" target="_blank">Lejupielādēt PDF fails</a>                 
+                    <figure class="w-richtext-align-center w-richtext-figure-type-image">
+                    <div class="slideshow-container">
+                        <div id="slideshow">
+                            <!-- Images will be loaded here by JavaScript -->
+                        </div>
+                        <button class="prev" onclick="prevImage()">&#10094;</button>
+                        <button class="next" onclick="nextImage()">&#10095;</button
+                    
+                    </div>
+                    </figure>
                 </div>           
             </div>
         </div>
@@ -102,5 +112,89 @@
         type="text/javascript"></script>
     <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>
+<script>
+    const images = [
+        "../assets/nama-svetki/web-5.jpg",
+        "../assets/nama-svetki/web-3.jpg",
+        "../assets/nama-svetki/web-6.jpg",
+        "../assets/nama-svetki/web-7.jpg",
+        "../assets/nama-svetki/web-10.jpg",
+        "../assets/nama-svetki/web-15.jpg",
+        "../assets/nama-svetki/web-19.jpg",
+        "../assets/nama-svetki/web-20.jpg",
+        "../assets/nama-svetki/web-22.jpg",
+        "../assets/nama-svetki/web-26.jpg",
+        "../assets/nama-svetki/web-27.jpg",
+        "../assets/nama-svetki/web-37.jpg",
+        "../assets/nama-svetki/web-35.jpg",
+        "../assets/nama-svetki/web-42.jpg",
+        "../assets/nama-svetki/web-45.jpg",
+        "../assets/nama-svetki/web-47.jpg",
+        "../assets/nama-svetki/web-56.jpg",
+        "../assets/nama-svetki/web-94.jpg",
+        "../assets/nama-svetki/web-110.jpg",
+        "../assets/nama-svetki/web-140.jpg",
+    ];
+
+
+    let currentImageIndex = 0;
+    let interval;
+    let startX = 0;
+
+    function showImage(index) {
+        const slideshow = document.getElementById("slideshow");
+        slideshow.innerHTML = `<img src="${images[index]}" alt="Image ${index + 1}" class="active">`;
+    }
+
+    function startSlideshow() {
+        showImage(currentImageIndex);
+        interval = setInterval(nextImage, 3000); // Automatically advance every 3 seconds
+    }
+
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        showImage(currentImageIndex);
+    }
+
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        showImage(currentImageIndex);
+    }
+
+    function pauseSlideshow() {
+        clearInterval(interval);
+    }
+
+    function resumeSlideshow() {
+        interval = setInterval(nextImage, 3000);
+    }
+
+    // Swipe Detection
+    function handleTouchStart(event) {
+        startX = event.touches[0].clientX;
+    }
+
+    function handleTouchEnd(event) {
+        const endX = event.changedTouches[0].clientX;
+        if (startX > endX + 50) {
+            pauseSlideshow();
+            nextImage();
+            resumeSlideshow();
+        } else if (startX < endX - 50) {
+            pauseSlideshow();
+            prevImage();
+            resumeSlideshow();
+        }
+    }
+
+    // Start the slideshow on page load
+    document.addEventListener("DOMContentLoaded", () => {
+        startSlideshow();
+        const slideshow = document.getElementById("slideshow");
+        slideshow.addEventListener("touchstart", handleTouchStart);
+        slideshow.addEventListener("touchend", handleTouchEnd);
+    });
+</script>
+</script>
 
 </html>
