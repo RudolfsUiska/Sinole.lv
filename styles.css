@@ -2002,3 +2002,61 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
       border-radius: 5px;
   }
    }
+   /* Tablet and down */
+@media (max-width: 991px) {
+  ._w-title {
+    height: 40vh;       /* was 70vh */
+    margin-bottom: 5vh; /* was 150px */
+  }
+  .main-h1 {
+    margin-top: 200px;
+    font-size: 12vh;    /* tune as needed */
+    line-height: 12.5vh;
+  }
+}
+
+/* Phones */
+@media (max-width: 767px) {
+  ._w-title {
+    height: 30vh;       /* smaller on phones */
+    margin-bottom: 3vh; /* tighter spacing below */
+    padding-right: 6vw; /* optional: slightly larger side padding */
+    padding-left: 6vw;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 479px) {
+  ._w-title {
+    height: auto;       /* let content define height */
+    min-height: 24vh;   /* keep a small hero feel */
+    margin-bottom: 24px;
+  }
+  .main-h1 {
+    margin-top: 200px;
+    font-size: 8vh;     /* you already reduce here; keep or tweak */
+    line-height: 8.5vh;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .main-h1,
+  .main-h1.home,
+  .main-h1.bold,
+  .main-h1.bold.home {
+      font-size: px !important;
+      line-height: 38px !important;
+  }
+}
+
+
+@media (max-width: 479px) {
+  .main-h1,
+  .main-h1.home,
+  .main-h1.bold,
+  .main-h1.bold.home {
+      font-size: 45px !important;
+      line-height: 40px !important;
+  }
+}
