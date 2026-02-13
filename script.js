@@ -20529,6 +20529,31 @@ Webflow.define('maps', module.exports = function ($, _) {
 
   return api;
 });
+// Make whole .wrapper.w-dyn-item navigate to its .project-link
+document.querySelectorAll('.wrapper.w-dyn-item').forEach((card) => {
+  const primary = card.querySelector('.project-link');
+  if (!primary) return;
+
+  // Make it look clickable
+  card.style.cursor = 'pointer';
+  card.setAttribute('tabindex', '0'); // keyboard focusable
+  card.setAttribute('role', 'link');  // a11y hint
+
+  // Click: go to the project link unless user clicked another interactive element
+  card.addEventListener('click', (e) => {
+    // allow clicks on internal links/buttons to behave normally
+    if (e.target.closest('a, button, [role="button"], .w-nav-button')) return;
+    window.location.href = primary.href;
+  });
+
+  // Keyboard: Enter/Space to follow the link
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      primary.click();
+    }
+  });
+});
 
 /***/ })
 /******/ ]);/**

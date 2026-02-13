@@ -2045,7 +2045,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   .main-h1.home,
   .main-h1.bold,
   .main-h1.bold.home {
-      font-size: px !important;
+      font-size: 45px !important;
       line-height: 38px !important;
   }
 }
@@ -2056,7 +2056,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   .main-h1.home,
   .main-h1.bold,
   .main-h1.bold.home {
-      font-size: 45px !important;
+      font-size: 40px !important;
       line-height: 40px !important;
   }
 }
