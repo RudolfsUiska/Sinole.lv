@@ -2,6 +2,7 @@ backend:
   name: github
   repo: RudolfsUiska/Sinole.lv
   branch: main
+  base_url: https://sinole-cms.rudolfs-uiska.workers.dev
 
 media_folder: public/assets
 public_folder: /assets
