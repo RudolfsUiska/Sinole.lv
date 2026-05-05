@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  coverImage: string;
+  slug: string;
+}
+
+const { title, description, coverImage, slug } = Astro.props;
+---
+<a href={`/work/${slug}`} class="card">
+  <img src={coverImage} alt={title} class="card-img" loading="lazy" />
+  <div class="card-overlay">
+    <h2 class="card-title">{title}</h2>
+    {description && <p class="card-desc">{description}</p>}
+    <span class="card-link">Vairāk par</span>
+  </div>
+</a>

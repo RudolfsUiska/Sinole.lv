@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('projects', ({ data }) => !data.draft);
+const projects = all
+  .filter(p => p.data.showOnHomepage !== false)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Sinole.lv">
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>
+        <span>Sinolē</span>
+        <span>LielsSniegums!</span>
+      </h1>
+      <p class="hero-sub">Būvējam komūnu.</p>
+    </div>
+  </section>
+
+  <section class="projects-section">
+    <div class="container">
+      <div class="project-grid">
+        {projects.map(p => (
+          <ProjectCard
+            title={p.data.title}
+            description={p.data.description}
+            coverImage={p.data.coverImage}
+            slug={p.slug}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

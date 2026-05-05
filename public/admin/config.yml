@@ -1,0 +1,32 @@
+backend:
+  name: github
+  repo: RudolfsUiska/Sinole.lv
+  branch: main
+
+media_folder: public/assets
+public_folder: /assets
+
+locale: lv
+
+collections:
+  - name: projects
+    label: Projekti
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Nosaukums, name: title, widget: string }
+      - { label: Apraksts, name: description, widget: text, required: false }
+      - { label: Datums, name: date, widget: datetime, format: "YYYY-MM-DD" }
+      - { label: Vāka bilde, name: coverImage, widget: image }
+      - { label: Varoņbilde (platā), name: heroImage, widget: image, required: false }
+      - label: Galerija
+        name: images
+        widget: list
+        required: false
+        field: { label: Bilde, name: image, widget: image }
+      - { label: Ārējā saite, name: externalLink, widget: string, required: false }
+      - { label: Iebūvēta saite (iframe URL), name: embedUrl, widget: string, required: false }
+      - { label: Rādīt sākumlapā, name: showOnHomepage, widget: boolean, default: true }
+      - { label: Melnraksts, name: draft, widget: boolean, default: false }
+      - { label: Saturs, name: body, widget: markdown, required: false }

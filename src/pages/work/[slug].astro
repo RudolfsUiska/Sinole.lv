@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, description, heroImage, coverImage, images, externalLink, embedUrl } = project.data;
+
+const all = await getCollection('projects', ({ data }) => !data.draft);
+const others = all
+  .filter(p => p.slug !== project.slug)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+---
+<Base title={`${title} — Sinole.lv`}>
+
+  <header class="project-header">
+    <h1>{title}</h1>
+    {description && <p class="hero-sub">{description}</p>}
+    {externalLink && (
+      <a href={externalLink} target="_blank" rel="noopener noreferrer" class="project-ext-link">
+        Apmeklēt
+      </a>
+    )}
+  </header>
+
+  {(heroImage || coverImage) && (
+    <img src={heroImage ?? coverImage} alt={title} class="project-hero" />
+  )}
+
+  <div class="project-body">
+    <Content />
+  </div>
+
+  {embedUrl && (
+    <div class="embed-wrap">
+      <iframe src={embedUrl} title={title} allowfullscreen loading="lazy"></iframe>
+    </div>
+  )}
+
+  {images && images.length > 0 && (
+    <div class="project-gallery">
+      {images.map((img: string) => (
+        <img src={img} alt={title} loading="lazy" />
+      ))}
+    </div>
+  )}
+
+  {others.length > 0 && (
+    <div class="other-projects">
+      <div class="container">
+        <p class="label">Citi projekti</p>
+        <div class="other-links">
+          {others.map(p => (
+            <a href={`/work/${p.slug}`}>{p.data.title}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+
+</Base>
