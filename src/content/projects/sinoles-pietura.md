@@ -3,7 +3,7 @@ title: Sinoles pietura
 description: Sinoles pietura tika uzfrišināta Lielās Talkas ietvaros.
 date: 2026-04-25
 coverImage: /assets/img_2348.jpg
-heroImage: /assets/img_2348.jpg
+heroImage: /assets/4272a958-1262-47f5-8b26-905bba83d273.jpg
 images:
   - /assets/e29c94ef-e8c8-491b-af61-3c26400e0a65.jpg
   - /assets/3fb24e65-c5e6-4856-b138-c5d6dfc1a1d8.jpg
