@@ -82,11 +82,20 @@ h3 { font-size: 1.125rem; }
 }
 
 /* ── HERO ── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .hero {
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
   padding: calc(var(--nav-h) + 2rem) 2rem 5rem;
+  background: linear-gradient(-45deg, #0a0a0a, #0d1a2e, #0a130d, #1a0d20, #0a0a0a);
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
 }
 
 .hero-inner { max-width: var(--content-w); }

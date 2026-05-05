@@ -4,3 +4,4 @@ dist/
 public/assets/
 .env
 .env.*
+cloudflare-worker.js
