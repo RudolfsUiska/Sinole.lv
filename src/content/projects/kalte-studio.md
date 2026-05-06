@@ -2,12 +2,14 @@
 title: "Kalte Studio"
 description: "Šī gada pasākums noraus jumtu!"
 date: 2025-04-01
-coverImage: "/assets/kalte-2025-main.jpg"
+coverImage: "/assets/KALTE_2K26.jpg"
 heroImage: "/assets/kalte2.jpg"
-images:
+posters:
+  - "/assets/KALTE_2K26.jpg"
   - "/assets/kalte-2025-afisa.jpg"
   - "/assets/KALTE_2K24.jpg"
   - "/assets/afiša-Enhanced-SR.jpg"
+images:
   - "/assets/kalte-polo.jpg"
   - "/assets/kalte_ojars_23.jpg"
   - "/assets/kalte_rudo_brave_23.jpg"
