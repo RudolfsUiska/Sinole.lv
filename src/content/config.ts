@@ -9,6 +9,7 @@ const projects = defineCollection({
     coverImage: z.string(),
     heroImage: z.string().optional(),
     images: z.array(z.string()).optional().default([]),
+    posters: z.array(z.string()).optional().default([]),
     externalLink: z.string().optional(),
     embedUrl: z.string().optional(),
     showOnHomepage: z.boolean().default(true),

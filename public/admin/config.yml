@@ -21,7 +21,12 @@ collections:
       - { label: Datums, name: date, widget: datetime, format: "YYYY-MM-DD" }
       - { label: Vāka bilde, name: coverImage, widget: image }
       - { label: Varoņbilde (platā), name: heroImage, widget: image, required: false }
-      - label: Galerija
+      - label: Afišas (portreta formāts)
+        name: posters
+        widget: list
+        required: false
+        field: { label: Afiša, name: poster, widget: image }
+      - label: Galerija (ainavu formāts)
         name: images
         widget: list
         required: false

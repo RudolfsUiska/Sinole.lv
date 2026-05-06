@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-const { title, description, heroImage, coverImage, images, externalLink, embedUrl } = project.data;
+const { title, description, heroImage, coverImage, images, posters, externalLink, embedUrl } = project.data;
 
 const all = await getCollection('projects', ({ data }) => !data.draft);
 const others = all
@@ -39,6 +39,14 @@ const others = all
   <div class="project-body">
     <Content />
   </div>
+
+  {posters && posters.length > 0 && (
+    <div class="poster-grid">
+      {posters.map((img: string) => (
+        <img src={img} alt={title} loading="lazy" />
+      ))}
+    </div>
+  )}
 
   {embedUrl && (
     <div class="embed-wrap">

@@ -236,6 +236,26 @@ h3 { font-size: 1.125rem; }
 .project-body ul, .project-body ol { padding-left: 1.5rem; margin-bottom: 1.25rem; color: var(--text-muted); }
 .project-body li { margin-bottom: 0.35rem; }
 
+/* ── POSTER GRID (portrait images) ── */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+  padding: 0 2rem;
+  max-width: var(--content-w);
+  margin: 0 auto 3rem;
+  align-items: start;
+}
+
+.poster-grid img {
+  width: 100%;
+  height: auto;
+  min-height: 480px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
 /* ── GALLERY ── */
 .project-gallery {
   display: grid;
