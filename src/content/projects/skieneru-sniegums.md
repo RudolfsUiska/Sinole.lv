@@ -3,8 +3,8 @@ title: Šķieneru Sniegums
 description: Šķieneru Sniegums ir auto entuziastu grupējums, kas vēlās dot otru
   iespēju (citreiz pēdējo) jebkuram vecam lūznim.
 date: 2023-06-01
-coverImage: /assets/ss-zivs.JPG
-heroImage: /assets/ss-zivs.JPG
+coverImage: /assets/371-dsc00193.jpg
+heroImage: /assets/20260507_122545.jpg
 images:
   - /assets/ss-urvan.jpg
   - /assets/ss-vw.JPG
