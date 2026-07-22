@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(npm install *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(xxd src/content/about/about.md)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
