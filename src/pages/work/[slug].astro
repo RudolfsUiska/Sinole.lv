@@ -41,7 +41,7 @@ const others = all
   </div>
 
   {posters && posters.length > 0 && (
-    <div class="poster-grid">
+    <div class={`poster-grid${posters.length === 1 ? ' poster-grid--single' : ''}`}>
       {posters.map((img: string) => (
         <img src={img} alt={title} loading="lazy" />
       ))}
@@ -55,7 +55,7 @@ const others = all
   )}
 
   {images && images.length > 0 && (
-    <div class="project-gallery">
+    <div class={`project-gallery${images.length === 1 ? ' project-gallery--single' : ''}`}>
       {images.map((img: string) => (
         <img src={img} alt={title} loading="lazy" />
       ))}

@@ -125,7 +125,7 @@ h3 { font-size: 1.125rem; }
 /* ── PROJECT CARD ── */
 .card {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 3px;
   background: var(--bg-card);
@@ -256,6 +256,17 @@ h3 { font-size: 1.125rem; }
   display: block;
 }
 
+/* single poster: center it instead of letting it sit in the first grid track */
+.poster-grid--single {
+  display: flex;
+  justify-content: center;
+}
+
+.poster-grid--single img {
+  width: auto;
+  max-width: min(100%, var(--body-w));
+}
+
 /* ── GALLERY ── */
 .project-gallery {
   columns: 2;
@@ -272,6 +283,18 @@ h3 { font-size: 1.125rem; }
   border-radius: 2px;
   margin-bottom: 0.75rem;
   break-inside: avoid;
+}
+
+/* single image: skip the 2-column masonry, center it like the hero/body above */
+.project-gallery--single {
+  columns: initial;
+  display: flex;
+  justify-content: center;
+}
+
+.project-gallery--single img {
+  max-width: min(100%, var(--body-w));
+  margin-bottom: 0;
 }
 
 /* ── EMBED ── */
