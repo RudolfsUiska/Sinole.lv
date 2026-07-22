@@ -36,3 +36,21 @@ collections:
       - { label: Rādīt sākumlapā, name: showOnHomepage, widget: boolean, default: true }
       - { label: Melnraksts, name: draft, widget: boolean, default: false }
       - { label: Saturs, name: body, widget: markdown, required: false }
+
+  - name: pages
+    label: Lapas
+    files:
+      - file: src/content/about/about.md
+        label: Par mums
+        name: about
+        fields:
+          - { label: Virsraksts, name: introHeading, widget: string }
+          - { label: Teksts, name: body, widget: markdown }
+          - { label: Kartes virsraksts, name: mapHeading, widget: string }
+          - { label: Kartes saite (Google Maps embed URL), name: mapEmbedUrl, widget: string }
+      - file: src/content/contact/contact.md
+        label: Kontakti
+        name: contact
+        fields:
+          - { label: Virsraksts, name: heading, widget: string }
+          - { label: E-pasts, name: email, widget: string }

@@ -1,23 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getEntry } from 'astro:content';
+
+const page = await getEntry('about', 'about');
+const { Content } = await page.render();
+const { introHeading, mapHeading, mapEmbedUrl } = page.data;
 ---
 <Base title="Par — Sinole.lv">
   <div class="about-section">
     <div class="about-grid">
       <div class="about-text">
-        <h2>Kaut kāds teksts no wikipedia</h2>
-        <p>
-          Sinole ir apdzīvota vieta Gulbenes novadā, Gaujas abos krastos 6 km
-          attālumā no Lejasciema. Gar Sinoli iet autoceļš P34. Līdz 1949. gadam —
-          Sinoles pagasta centrs. Ir ūdensdzirnavas.
-        </p>
+        <h2>{introHeading}</h2>
+        <Content />
       </div>
 
       <div class="map-section">
-        <h2>Atbrauc uz Sinoli</h2>
+        <h2>{mapHeading}</h2>
         <div class="map-wrap">
           <iframe
-            src="https://www.google.com/maps?q=57.2464606,26.4978504&z=15&output=embed"
+            src={mapEmbedUrl}
             loading="lazy"
             allowfullscreen
             title="Sinole karte"

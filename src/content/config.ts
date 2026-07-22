@@ -17,4 +17,21 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+const about = defineCollection({
+  type: 'content',
+  schema: z.object({
+    introHeading: z.string(),
+    mapHeading: z.string(),
+    mapEmbedUrl: z.string(),
+  }),
+});
+
+const contact = defineCollection({
+  type: 'content',
+  schema: z.object({
+    heading: z.string(),
+    email: z.string(),
+  }),
+});
+
+export const collections = { projects, about, contact };
