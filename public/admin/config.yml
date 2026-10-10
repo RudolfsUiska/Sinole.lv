@@ -45,6 +45,7 @@ collections:
         name: about
         fields:
           - { label: Virsraksts, name: introHeading, widget: string }
+          - { label: Īss apraksts (sākumlapai), name: summary, widget: text, required: false }
           - { label: Teksts, name: body, widget: markdown }
           - { label: Kartes virsraksts, name: mapHeading, widget: string }
           - { label: Kartes saite (Google Maps embed URL), name: mapEmbedUrl, widget: string }

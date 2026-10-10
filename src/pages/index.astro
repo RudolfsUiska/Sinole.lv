@@ -15,7 +15,6 @@ const [latest, ...rest] = projects;
 const latestDate = latest?.data.date.toLocaleDateString('lv-LV', { year: 'numeric', month: 'long' });
 
 const about = await getEntry('about', 'about');
-const { Content: AboutContent } = await about.render();
 ---
 <Base title="Sinole.lv">
   <section class="hero">
@@ -107,9 +106,7 @@ const { Content: AboutContent } = await about.render();
     <div class="container place-grid">
       <div class="place-copy reveal">
         <h2>{about.data.mapHeading}</h2>
-        <div class="place-text">
-          <AboutContent />
-        </div>
+        {about.data.summary && <p class="place-text">{about.data.summary}</p>}
         <a href="/about" class="text-link">
           Par Sinoli <Icon name="arrow-right" />
         </a>

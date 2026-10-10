@@ -866,17 +866,61 @@ h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 3rem;
   align-items: start;
 }
 
-.about-text h1,
+.about-text h1 {
+  font-size: clamp(2.25rem, 6vw, 4.25rem);
+  margin-bottom: 1.5rem;
+}
+
+.about-text h2 {
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  margin: 3rem 0 1rem;
+}
+
+.about-text p {
+  margin-bottom: 1.1rem;
+  max-width: 62ch;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* the opening paragraph reads as the lead */
+.about-text h1 + p {
+  color: var(--ink);
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.about-text ul {
+  max-width: 62ch;
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+.about-text li { margin-bottom: 0.6rem; }
+.about-text li::marker { color: var(--ink); }
+
+.about-text strong { color: var(--ink); font-weight: 500; }
+
+.about-text a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.about-text a:hover { text-decoration-color: var(--ink); }
+
+.about-text img { margin: 1.75rem 0 0.6rem; }
+.about-text em { font-size: 0.9rem; }
+
 .map-section h2 {
-  font-size: clamp(1.9rem, 4.5vw, 3.25rem);
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
   margin-bottom: 1.25rem;
 }
-.about-text p { color: var(--muted); line-height: 1.75; max-width: 52ch; }
-.about-text p + p { margin-top: 1rem; }
 
 .map-wrap {
   aspect-ratio: 4 / 3;
@@ -999,7 +1043,10 @@ h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
 
   .feature-grid { grid-template-columns: 5fr 6fr; gap: clamp(2.5rem, 6vw, 5rem); }
   .place-grid { grid-template-columns: 1fr 1.1fr; gap: clamp(2.5rem, 6vw, 5rem); }
-  .about-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .about-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 4rem; }
+  /* the map stays in view while the long text scrolls */
+  .map-section { position: sticky; top: calc(var(--nav-h) + 2rem); }
+  .map-wrap { aspect-ratio: 4 / 5; }
 }
 
 @media (min-width: 960px) {

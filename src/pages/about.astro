@@ -4,17 +4,17 @@ import { getEntry } from 'astro:content';
 
 const page = await getEntry('about', 'about');
 const { Content } = await page.render();
-const { introHeading, mapHeading, mapEmbedUrl } = page.data;
+const { introHeading, summary, mapHeading, mapEmbedUrl } = page.data;
 ---
-<Base title="Par | Sinole.lv">
+<Base title="Par | Sinole.lv" description={summary}>
   <div class="about-section">
     <div class="about-grid">
-      <div class="about-text">
+      <article class="about-text">
         <h1>{introHeading}</h1>
         <Content />
-      </div>
+      </article>
 
-      <div class="map-section">
+      <aside class="map-section">
         <h2>{mapHeading}</h2>
         <div class="map-wrap">
           <iframe
@@ -24,7 +24,7 @@ const { introHeading, mapHeading, mapEmbedUrl } = page.data;
             title="Sinole karte"
           ></iframe>
         </div>
-      </div>
+      </aside>
     </div>
   </div>
 </Base>

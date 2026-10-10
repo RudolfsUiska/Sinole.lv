@@ -21,6 +21,7 @@ const about = defineCollection({
   type: 'content',
   schema: z.object({
     introHeading: z.string(),
+    summary: z.string().optional(),
     mapHeading: z.string(),
     mapEmbedUrl: z.string(),
   }),
