@@ -9,6 +9,7 @@ const MIME = {
   '.png': 'image/png', '.gif': 'image/gif',
   '.svg': 'image/svg+xml', '.webp': 'image/webp',
   '.ico': 'image/x-icon', '.pdf': 'application/pdf',
+  '.mp4': 'video/mp4',
 };
 
 export default defineConfig({
