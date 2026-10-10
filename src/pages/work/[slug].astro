@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -20,20 +21,25 @@ const others = all
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
 ---
-<Base title={`${title} — Sinole.lv`}>
+<Base title={`${title} | Sinole.lv`} description={description || undefined}>
 
   <header class="project-header">
+    <a href="/#projekti" class="back-link">
+      <Icon name="arrow-left" /> Visi projekti
+    </a>
     <h1>{title}</h1>
-    {description && <p class="hero-sub">{description}</p>}
+    {description && <p class="project-lead">{description}</p>}
     {externalLink && (
-      <a href={externalLink} target="_blank" rel="noopener noreferrer" class="project-ext-link">
-        Apmeklēt
+      <a href={externalLink} target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+        Apmeklēt <Icon name="arrow-up-right" />
       </a>
     )}
   </header>
 
   {(heroImage || coverImage) && (
-    <img src={heroImage ?? coverImage} alt={title} class="project-hero" />
+    <div class="project-hero-wrap">
+      <img src={heroImage ?? coverImage} alt={title} class="project-hero" fetchpriority="high" />
+    </div>
   )}
 
   <div class="project-body">
@@ -43,7 +49,7 @@ const others = all
   {posters && posters.length > 0 && (
     <div class={`poster-grid${posters.length === 1 ? ' poster-grid--single' : ''}`}>
       {posters.map((img: string) => (
-        <img src={img} alt={title} loading="lazy" />
+        <img src={img} alt={title} loading="lazy" decoding="async" />
       ))}
     </div>
   )}
@@ -57,22 +63,25 @@ const others = all
   {images && images.length > 0 && (
     <div class={`project-gallery${images.length === 1 ? ' project-gallery--single' : ''}`}>
       {images.map((img: string) => (
-        <img src={img} alt={title} loading="lazy" />
+        <img src={img} alt={title} loading="lazy" decoding="async" />
       ))}
     </div>
   )}
 
   {others.length > 0 && (
-    <div class="other-projects">
+    <section class="other-projects">
       <div class="container">
-        <p class="label">Citi projekti</p>
-        <div class="other-links">
+        <h2 class="section-title">Citi projekti</h2>
+        <div class="other-grid">
           {others.map(p => (
-            <a href={`/work/${p.slug}`}>{p.data.title}</a>
+            <a href={`/work/${p.slug}`} class="other-card">
+              <img src={p.data.coverImage} alt="" loading="lazy" decoding="async" />
+              <span>{p.data.title}</span>
+            </a>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )}
 
 </Base>

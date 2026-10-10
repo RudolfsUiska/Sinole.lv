@@ -6,11 +6,11 @@ const page = await getEntry('about', 'about');
 const { Content } = await page.render();
 const { introHeading, mapHeading, mapEmbedUrl } = page.data;
 ---
-<Base title="Par — Sinole.lv">
+<Base title="Par | Sinole.lv">
   <div class="about-section">
     <div class="about-grid">
       <div class="about-text">
-        <h2>{introHeading}</h2>
+        <h1>{introHeading}</h1>
         <Content />
       </div>
 

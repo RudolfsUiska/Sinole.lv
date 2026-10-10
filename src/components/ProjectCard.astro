@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -8,11 +10,13 @@ interface Props {
 
 const { title, description, coverImage, slug } = Astro.props;
 ---
-<a href={`/work/${slug}`} class="card">
-  <img src={coverImage} alt={title} class="card-img" loading="lazy" />
-  <div class="card-overlay">
-    <h2 class="card-title">{title}</h2>
+<a href={`/work/${slug}`} class="card reveal">
+  <div class="card-media">
+    <img src={coverImage} alt="" class="card-img" loading="lazy" decoding="async" />
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">{title}</h3>
+    <Icon name="arrow-up-right" class="card-arrow" />
     {description && <p class="card-desc">{description}</p>}
-    <span class="card-link">Vairāk par</span>
   </div>
 </a>

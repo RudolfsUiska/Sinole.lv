@@ -1,39 +1,67 @@
 ---
+import Icon from './Icon.astro';
+
 const pathname = Astro.url.pathname;
 ---
-<nav class="nav">
-  <a href="/" class="nav-logo">
-    <img src="/assets/Sinolelv.svg" alt="Sinole.lv" width="140" height="32" />
-  </a>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Sinole.lv sākumlapa">
+      <img src="/assets/Sinolelv.svg" alt="Sinole.lv" width="83" height="40" />
+    </a>
 
-  <button class="nav-toggle" id="nav-toggle" aria-label="Atvērt izvēlni" aria-expanded="false">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <line x1="3" y1="7" x2="21" y2="7"/>
-      <line x1="3" y1="12" x2="21" y2="12"/>
-      <line x1="3" y1="17" x2="21" y2="17"/>
-    </svg>
-  </button>
+    <nav aria-label="Galvenā izvēlne">
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Sākums</a></li>
+        <li><a href="/about" aria-current={pathname.startsWith('/about') ? 'page' : undefined}>Par</a></li>
+        <li><a href="/contact" aria-current={pathname.startsWith('/contact') ? 'page' : undefined}>Kontakti</a></li>
+      </ul>
+    </nav>
 
-  <ul class="nav-links" id="nav-links" role="list">
-    <li><a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Sākums</a></li>
-    <li><a href="/about" aria-current={pathname.startsWith('/about') ? 'page' : undefined}>Par</a></li>
-    <li><a href="/contact" aria-current={pathname.startsWith('/contact') ? 'page' : undefined}>Kontakti</a></li>
-  </ul>
-</nav>
+    <div class="nav-actions">
+      <button type="button" class="icon-btn" id="theme-toggle" aria-label="Pārslēgt gaišo vai tumšo režīmu">
+        <Icon name="moon" class="when-light" />
+        <Icon name="sun" class="when-dark" />
+      </button>
+      <button type="button" class="icon-btn nav-toggle" id="nav-toggle" aria-label="Atvērt izvēlni" aria-expanded="false" aria-controls="nav-links">
+        <Icon name="list" class="when-closed" />
+        <Icon name="x" class="when-open" />
+      </button>
+    </div>
+  </div>
+</header>
 
 <script>
-  const toggle = document.getElementById('nav-toggle')!;
-  const links  = document.getElementById('nav-links')!;
+  function closeMenu() {
+    document.getElementById('nav-links')?.classList.remove('open');
+    document.getElementById('nav-toggle')?.setAttribute('aria-expanded', 'false');
+  }
 
-  toggle.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(open));
+  // Delegated once: these listeners survive view-transition page swaps.
+  document.addEventListener('click', (event) => {
+    const target = event.target as Element;
+
+    if (target.closest('#theme-toggle')) {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try {
+        localStorage.setItem('sinole-theme', next);
+      } catch {
+        // storage blocked: the choice lasts for this page only
+      }
+      return;
+    }
+
+    const toggle = target.closest('#nav-toggle');
+    if (toggle) {
+      const open = document.getElementById('nav-links')!.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      return;
+    }
+
+    if (!target.closest('#nav-links')) closeMenu();
   });
 
-  document.addEventListener('click', (e) => {
-    if (!toggle.contains(e.target as Node) && !links.contains(e.target as Node)) {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
   });
 </script>

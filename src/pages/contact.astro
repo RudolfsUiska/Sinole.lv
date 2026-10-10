@@ -1,15 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import { getEntry } from 'astro:content';
 
 const page = await getEntry('contact', 'contact');
 const { heading, email } = page.data;
 ---
-<Base title="Kontakti — Sinole.lv">
+<Base title="Kontakti | Sinole.lv">
   <div class="contact-section">
-    <div class="contact-inner">
-      <h2>{heading}</h2>
-      <a href={`mailto:${email}`}>{email}</a>
+    <div class="container contact-inner">
+      <h1>{heading}</h1>
+      <a href={`mailto:${email}`} class="contact-mail">
+        {email} <Icon name="arrow-up-right" />
+      </a>
     </div>
   </div>
 </Base>

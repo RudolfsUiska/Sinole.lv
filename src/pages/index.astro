@@ -1,36 +1,128 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { getCollection } from 'astro:content';
+import RadioPlayer from '../components/RadioPlayer.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection, getEntry } from 'astro:content';
 
 const all = await getCollection('projects', ({ data }) => !data.draft);
 const projects = all
   .filter(p => p.data.showOnHomepage !== false)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// The newest project gets the large feature slot, the rest fill the grid.
+const [latest, ...rest] = projects;
+const latestDate = latest?.data.date.toLocaleDateString('lv-LV', { year: 'numeric', month: 'long' });
+
+const about = await getEntry('about', 'about');
+const { Content: AboutContent } = await about.render();
 ---
 <Base title="Sinole.lv">
   <section class="hero">
-    <div class="hero-inner">
-      <h1>
-        <span>Sinolē</span>
-        <span>LielsSniegums!</span>
-      </h1>
-      <p class="hero-sub">Būvējam komūnu.</p>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>
+          <span>Sinolē</span>
+          <span><mark>LielsSniegums!</mark></span>
+        </h1>
+        <p class="hero-sub">Būvējam komūnu.</p>
+        <div class="hero-cta">
+          <button type="button" class="btn btn--primary" data-radio-toggle aria-pressed="false">
+            <span class="when-stopped">Klausīties radio</span>
+            <span class="when-active">Apturēt radio</span>
+            <Icon name="play" class="when-stopped" />
+            <Icon name="stop" class="when-active" />
+          </button>
+          <a href="#projekti" class="btn btn--ghost">
+            Skatīt projektus <Icon name="arrow-right" />
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <img
+          src="/assets/kalte_rudo_brave_23.jpg"
+          alt="Dīdžejs ar austiņām pie pults Kalte Studio pasākumā"
+          class="hero-photo"
+          width="1066"
+          height="1600"
+          fetchpriority="high"
+        />
+
+        <div class="notch notch--tile">
+          <a href="https://fm.sinole.lv" target="_blank" rel="noopener noreferrer" class="hero-tile">
+            <Icon name="broadcast" />
+            <strong>Sinole FM</strong>
+            <span>fm.sinole.lv <Icon name="arrow-up-right" /></span>
+          </a>
+        </div>
+
+        <div class="notch notch--player">
+          <RadioPlayer />
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="projects-section">
-    <div class="container">
-      <div class="project-grid">
-        {projects.map(p => (
-          <ProjectCard
-            title={p.data.title}
-            description={p.data.description}
-            coverImage={p.data.coverImage}
-            slug={p.slug}
-          />
-        ))}
+  {latest && (
+    <section class="feature">
+      <div class="container feature-grid">
+        <a href={`/work/${latest.slug}`} class="feature-media reveal" tabindex="-1" aria-hidden="true">
+          <img src={latest.data.coverImage} alt="" loading="lazy" decoding="async" />
+        </a>
+        <div class="feature-copy reveal">
+          <p class="eyebrow">Jaunākais</p>
+          <h2>{latest.data.title}</h2>
+          {latest.data.description && <p class="feature-desc">{latest.data.description}</p>}
+          <p class="feature-date">{latestDate}</p>
+          <a href={`/work/${latest.slug}`} class="btn btn--primary">
+            Atvērt projektu <Icon name="arrow-right" />
+          </a>
+        </div>
       </div>
+    </section>
+  )}
+
+  <section class="projects-section" id="projekti">
+    <div class="container">
+      <h2 class="section-title">Projekti</h2>
+      {rest.length > 0 ? (
+        <div class="project-grid">
+          {rest.map(p => (
+            <ProjectCard
+              title={p.data.title}
+              description={p.data.description}
+              coverImage={p.data.coverImage}
+              slug={p.slug}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty">Pagaidām šeit nav citu projektu.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="place">
+    <div class="container place-grid">
+      <div class="place-copy reveal">
+        <h2>{about.data.mapHeading}</h2>
+        <div class="place-text">
+          <AboutContent />
+        </div>
+        <a href="/about" class="text-link">
+          Par Sinoli <Icon name="arrow-right" />
+        </a>
+      </div>
+      <img
+        src="/assets/sinole-koka.jpg"
+        alt="No koka izgriezts uzraksts Sinole uz dēļa"
+        class="place-photo reveal"
+        width="2991"
+        height="1683"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </section>
 </Base>

@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+import RadioStatus from './RadioStatus.astro';
+---
+<aside class="dock" aria-label="Sinole FM radio" transition:persist="radio-dock">
+  <button type="button" class="player-btn player-btn--sm" data-radio-toggle aria-label="Atskaņot radio" aria-pressed="false">
+    <Icon name="play" class="when-stopped" />
+    <Icon name="stop" class="when-active" />
+  </button>
+  <div class="player-meta">
+    <strong>Sinole FM</strong>
+    <RadioStatus />
+  </div>
+  <div class="player-wave player-wave--sm" aria-hidden="true">
+    {[52, 100, 68, 84, 44].map((h, i) => <span style={`--h:${h}%;--i:${i}`}></span>)}
+  </div>
+</aside>
+
+<script>
+  import '../scripts/radio';
+</script>

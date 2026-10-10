@@ -1,0 +1,35 @@
+---
+import { getEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+const contact = await getEntry('contact', 'contact');
+const email = contact?.data.email;
+---
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="/" class="footer-logo" aria-label="Sinole.lv sākumlapa">
+      <img src="/assets/Sinolelv.svg" alt="Sinole.lv" width="100" height="48" loading="lazy" />
+    </a>
+
+    <ul class="footer-links" role="list">
+      <li><a href="/">Sākums</a></li>
+      <li><a href="/about">Par</a></li>
+      <li><a href="/contact">Kontakti</a></li>
+      <li>
+        <a href="https://fm.sinole.lv" target="_blank" rel="noopener noreferrer">
+          Sinole FM <Icon name="arrow-up-right" />
+        </a>
+      </li>
+    </ul>
+
+    {email && (
+      <a href={`mailto:${email}`} class="footer-mail">
+        <Icon name="envelope" /> {email}
+      </a>
+    )}
+  </div>
+
+  <div class="container footer-base">
+    <p>&copy; {new Date().getFullYear()} Sinole.lv</p>
+  </div>
+</footer>
