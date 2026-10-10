@@ -2,7 +2,7 @@
 // The Audio object lives in JS (not in the DOM), so it keeps playing while
 // Astro's view transitions swap pages. All UI reads html[data-radio].
 
-const STREAM_URL = 'https://fm.sinole.lv:8100/radio.mp3';
+const STREAM_URL = 'https://stream.sinole.lv/radio.mp3';
 const VOLUME_KEY = 'sinole-radio-volume';
 const CONNECT_TIMEOUT_MS = 15000;
 const ERROR_DISMISS_MS = 8000;
