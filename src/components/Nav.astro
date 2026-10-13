@@ -14,6 +14,16 @@ const pathname = Astro.url.pathname;
         <li><a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Sākums</a></li>
         <li><a href="/about" aria-current={pathname.startsWith('/about') ? 'page' : undefined}>Par</a></li>
         <li><a href="/contact" aria-current={pathname.startsWith('/contact') ? 'page' : undefined}>Kontakti</a></li>
+        <li class="nav-ext-item nav-ext-item--first">
+          <a class="nav-ext" href="https://sinoler.sinole.lv">
+            Sinoler <Icon name="arrow-up-right" />
+          </a>
+        </li>
+        <li class="nav-ext-item">
+          <a class="nav-ext" href="https://sandele.sinole.lv">
+            SAndele <Icon name="arrow-up-right" />
+          </a>
+        </li>
       </ul>
     </nav>
 

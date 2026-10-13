@@ -20,6 +20,9 @@ const others = all
   .filter(p => p.slug !== project.slug)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
+
+// Sinole's own sub-sites open in the same tab, so Back returns here.
+const staysInTab = externalLink ? /^https?:\/\/([a-z0-9-]+\.)?sinole\.lv(\/|$)/i.test(externalLink) : false;
 ---
 <Base title={`${title} | Sinole.lv`} description={description || undefined}>
 
@@ -30,7 +33,12 @@ const others = all
     <h1>{title}</h1>
     {description && <p class="project-lead">{description}</p>}
     {externalLink && (
-      <a href={externalLink} target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+      <a
+        href={externalLink}
+        target={staysInTab ? undefined : '_blank'}
+        rel={staysInTab ? undefined : 'noopener noreferrer'}
+        class="btn btn--primary"
+      >
         Apmeklēt <Icon name="arrow-up-right" />
       </a>
     )}
